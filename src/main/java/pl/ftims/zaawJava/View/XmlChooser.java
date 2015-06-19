@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.View;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,15 +15,15 @@ import java.awt.Dialog.ModalExclusionType;
  */
 public class XmlChooser extends JFrame {
 	
-	JButton btnOk = new JButton("OK");
+	public JButton btnOk = new JButton("OK");
 	
-	JCheckBox chckbxKlienci = new JCheckBox("Klienci");
+	public JCheckBox chckbxKlienci = new JCheckBox("Klienci");
 	
-	JCheckBox chckbxRowery = new JCheckBox("Rowery");
+	public JCheckBox chckbxRowery = new JCheckBox("Rowery");
 	
-	JCheckBox chckbxWypozyczenia = new JCheckBox("Wypozyczenia");
+	public JCheckBox chckbxWypozyczenia = new JCheckBox("Wypozyczenia");
 	
-	JCheckBox chckbxZdarzenia = new JCheckBox("Zdarzenia");
+	public JCheckBox chckbxZdarzenia = new JCheckBox("Zdarzenia");
 	
 	/**
 	 * Tworzy nowy obiekt XmlChooser

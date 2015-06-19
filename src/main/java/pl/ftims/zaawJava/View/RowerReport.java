@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.View;
 
 import java.awt.Dialog.ModalExclusionType;
 
@@ -16,8 +16,8 @@ import javax.swing.JLabel;
  */
 public class RowerReport extends JFrame{
 	
-	JButton btnOk = new JButton("OK");
-	JComboBox comboBox = new JComboBox();
+	public JButton btnOk = new JButton("OK");
+	public JComboBox comboBox = new JComboBox();
 	
 	/**
 	 * Tworzy nowy obiekt RowerReport
