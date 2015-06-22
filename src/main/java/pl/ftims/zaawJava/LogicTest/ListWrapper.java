@@ -20,7 +20,7 @@ public class ListWrapper {
 	private ArrayList<Bicycles> bicycles;
 	
 	/** lista reprezentujaca wypozyczenia */
-	private ArrayList<Wypozyczenie> rents;
+	private ArrayList<Rent> rents;
 	
 	/** lista reprezentujaca zdarzenia */
 	private ArrayList<Zdarzenie> events;
@@ -41,11 +41,11 @@ public class ListWrapper {
 		this.bicycles = bicycles;
 	}
 
-	public ArrayList<Wypozyczenie> getRents() {
+	public ArrayList<Rent> getRents() {
 		return rents;
 	}
 
-	public void setRents(ArrayList<Wypozyczenie> rents) {
+	public void setRents(ArrayList<Rent> rents) {
 		this.rents = rents;
 	}
 
@@ -63,7 +63,7 @@ public class ListWrapper {
 	public ListWrapper() {
 		clients = new ArrayList<Client>();
 		bicycles = new ArrayList<Bicycles>();
-		rents = new ArrayList<Wypozyczenie>();
+		rents = new ArrayList<Rent>();
 		events = new ArrayList<Zdarzenie>();
 	}
    

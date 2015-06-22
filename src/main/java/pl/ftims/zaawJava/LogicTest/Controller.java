@@ -61,11 +61,11 @@ public class Controller {
 	}
 
 	/** Zwraca liste wypozyczen z wrappera */
-	public ArrayList<Wypozyczenie> getRent() {
+	public ArrayList<Rent> getRent() {
 		return lists.getRents();
 	}
 
-	public void setRent(ArrayList<Wypozyczenie> wypozyczenia) {
+	public void setRent(ArrayList<Rent> wypozyczenia) {
 		lists.setRents(wypozyczenia);
 	}
 
@@ -566,12 +566,12 @@ public class Controller {
 
 					}
 					if (filename.equals("Wypozyczenia.xml")) {
-						ArrayList<Wypozyczenie> temp = new ArrayList<Wypozyczenie>();
+						ArrayList<Rent> temp = new ArrayList<Rent>();
 						try {
-							temp = (ArrayList<Wypozyczenie>) serializer
+							temp = (ArrayList<Rent>) serializer
 									.deserializeFromXML("Wypozyczenia.xml");
 							lists.clearList(lists.getRents());
-							for (Wypozyczenie tmp : temp) {
+							for (Rent tmp : temp) {
 								lists.addItem(lists.getRents(), tmp);
 								;
 							}
@@ -675,7 +675,7 @@ public class Controller {
 		try {
 			lists.setKlienci(new ArrayList<Client>(db.readClients(path)));
 			lists.setBicycles(new ArrayList<Bicycles>(db.readBicycles(path)));
-			lists.setRents(new ArrayList<Wypozyczenie>(db
+			lists.setRents(new ArrayList<Rent>(db
 					.readRents(path)));
 			lists.setEvents(new ArrayList<Zdarzenie>(db
 					.readEvents(path)));
@@ -699,7 +699,7 @@ public class Controller {
 		try {
 			lists.setKlienci(new ArrayList<Client>(db.readClients(path)));
 			lists.setBicycles(new ArrayList<Bicycles>(db.readBicycles(path)));
-			lists.setRents(new ArrayList<Wypozyczenie>(db
+			lists.setRents(new ArrayList<Rent>(db
 					.readRents(path)));
 			lists.setEvents(new ArrayList<Zdarzenie>(db
 					.readEvents(path)));
@@ -735,19 +735,19 @@ public class Controller {
 			mw.comboBox_2.setSelectedIndex(1);
 
 		mw.textField_9.setText(lists.getKlienci()
-				.get(lists.getRents().get(0).getKlient()).getFirstName()
+				.get(lists.getRents().get(0).getClient()).getFirstName()
 				+ " "
 				+ lists.getKlienci()
-						.get(lists.getRents().get(0).getKlient())
+						.get(lists.getRents().get(0).getClient())
 						.getLastName());
 		mw.textField_11.setText(lists.getBicycles()
-				.get(lists.getRents().get(0).getKlient()).getModel());
-		mw.textField_12.setText(lists.getRents().get(0).getData_wyp());
-		mw.textField_13.setText(lists.getRents().get(0).getData_zwr());
-		mw.textField_14.setText(lists.getRents().get(0).getUwagi());
-		mw.textField_15.setText(lists.getRents().get(0).getWartosc()
+				.get(lists.getRents().get(0).getClient()).getModel());
+		mw.textField_12.setText(lists.getRents().get(0).getStartDate());
+		mw.textField_13.setText(lists.getRents().get(0).getStopDate());
+		mw.textField_14.setText(lists.getRents().get(0).getComments());
+		mw.textField_15.setText(lists.getRents().get(0).getValue()
 				.toString());
-		mw.textField_16.setText(lists.getRents().get(0).getStawka()
+		mw.textField_16.setText(lists.getRents().get(0).getPrice()
 				.toString());
 
 		mw.textField_17.setText(lists.getEvents().get(0).getTytul());
@@ -795,7 +795,7 @@ public class Controller {
 	public void addRent() {
 		ListWrapper.addItem(
 				lists.getRents(),
-				(new Wypozyczenie(null, Integer.parseInt(mw.textField_9
+				(new Rent(null, Integer.parseInt(mw.textField_9
 						.getText()),
 						Integer.parseInt(mw.textField_11.getText()),
 						mw.textField_12.getText(), mw.textField_13.getText(),
@@ -890,19 +890,19 @@ public class Controller {
 	 */
 	public void updateRentsView(int selected) {
 		mw.textField_9.setText(lists.getRents().get(selected)
-				.getKlient().toString());
+				.getClient().toString());
 		mw.textField_11.setText(lists.getRents().get(selected)
-				.getRower().toString());
+				.getBicycle().toString());
 		mw.textField_12.setText(lists.getRents().get(selected)
-				.getData_wyp().toString());
+				.getStartDate().toString());
 		mw.textField_13.setText(lists.getRents().get(selected)
-				.getData_zwr());
+				.getStopDate());
 		mw.textField_15.setText(lists.getRents().get(selected)
-				.getStawka().toString());
+				.getPrice().toString());
 		mw.textField_16.setText(lists.getRents().get(selected)
-				.getWartosc().toString());
+				.getValue().toString());
 		mw.textField_14.setText(lists.getRents().get(selected)
-				.getUwagi());
+				.getComments());
 	}
 
 	/**

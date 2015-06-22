@@ -152,15 +152,15 @@ public class Database {
 	 * @throws SQLException
 	 *             wyjatek SQL
 	 */
-	public ArrayList<Wypozyczenie> readRents(String dbfile)
+	public ArrayList<Rent> readRents(String dbfile)
 			throws SQLException {
 		initDatabase(dbfile);
 		try {
 
 			wypozyczenia.first();
-			ArrayList<Wypozyczenie> bufor = new ArrayList<Wypozyczenie>();
+			ArrayList<Rent> bufor = new ArrayList<Rent>();
 			do {
-				bufor.add(new Wypozyczenie(wypozyczenia
+				bufor.add(new Rent(wypozyczenia
 						.getInt("ID_Wypozyczenia"), wypozyczenia
 						.getInt("Klient"), wypozyczenia.getInt("Rower"),
 						wypozyczenia.getString("Data_wyp"), wypozyczenia
@@ -373,7 +373,7 @@ public class Database {
 	 * @param dbfile
 	 *            nazwa pliku z baza danych
 	 */
-	public void saveRents(ArrayList<Wypozyczenie> rentsChanged,
+	public void saveRents(ArrayList<Rent> rentsChanged,
 			String dbfile) {
 		try {
 			initDatabase(dbfile);
@@ -383,36 +383,36 @@ public class Database {
 			for (int i = 0; i < rentsChanged.size(); i++) {
 				if (rentsChanged.get(i).getID() != null) {
 					wyp.executeUpdate("UPDATE Wypozyczenia SET Klient='"
-							+ rentsChanged.get(i).getKlient()
+							+ rentsChanged.get(i).getClient()
 							+ "', Rower='"
-							+ rentsChanged.get(i).getRower()
+							+ rentsChanged.get(i).getBicycle()
 							+ "', Data_wyp='"
-							+ rentsChanged.get(i).getData_wyp()
+							+ rentsChanged.get(i).getStartDate()
 							+ "', Data_zwr='"
-							+ rentsChanged.get(i).getData_zwr()
+							+ rentsChanged.get(i).getStopDate()
 							+ "', Stawka='"
-							+ rentsChanged.get(i).getStawka()
+							+ rentsChanged.get(i).getPrice()
 							+ "', Wartosc='"
-							+ rentsChanged.get(i).getWartosc()
+							+ rentsChanged.get(i).getValue()
 							+ "', Uwagi='"
-							+ rentsChanged.get(i).getUwagi()
+							+ rentsChanged.get(i).getComments()
 							+ "' WHERE ID_Wypozyczenia="
 							+ rentsChanged.get(i).getID() + "");
 				} else {
 					wyp.executeUpdate("INSERT INTO Wypozyczenia (Klient,Rower,Data_wyp,Data_zwr,Stawka,Wartosc,Uwagi) VALUES ('"
-							+ rentsChanged.get(i).getKlient()
+							+ rentsChanged.get(i).getClient()
 							+ "','"
-							+ rentsChanged.get(i).getRower()
+							+ rentsChanged.get(i).getBicycle()
 							+ "','"
-							+ rentsChanged.get(i).getData_wyp()
+							+ rentsChanged.get(i).getStartDate()
 							+ "','"
-							+ rentsChanged.get(i).getData_zwr()
+							+ rentsChanged.get(i).getStopDate()
 							+ "',"
-							+ rentsChanged.get(i).getStawka()
+							+ rentsChanged.get(i).getPrice()
 							+ ","
-							+ rentsChanged.get(i).getWartosc()
+							+ rentsChanged.get(i).getValue()
 							+ ",'"
-							+ rentsChanged.get(i).getUwagi() + "')");
+							+ rentsChanged.get(i).getComments() + "')");
 				}
 			}
 			JOptionPane.showMessageDialog(null,

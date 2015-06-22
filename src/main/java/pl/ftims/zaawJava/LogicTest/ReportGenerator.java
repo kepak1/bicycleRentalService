@@ -31,13 +31,13 @@ public class ReportGenerator {
 	 *            lista wypozyczen
 	 */
 	public void generatePaymentsReport(ArrayList<Zdarzenie> zd,
-			ArrayList<Wypozyczenie> wyp) {
+			ArrayList<Rent> wyp) {
 		ArrayList<Double> values = new ArrayList<Double>();
 		for (Zdarzenie z : zd) {
 			values.add(z.getWartosc());
 		}
-		for (Wypozyczenie w : wyp) {
-			values.add(w.getWartosc());
+		for (Rent w : wyp) {
+			values.add(w.getValue());
 		}
 		try {
 			PrintStream out = new PrintStream(new FileOutputStream(
@@ -84,7 +84,7 @@ public class ReportGenerator {
 	 * @param to data koncowa
 	 */
 	public void generatePaymentsReport(ArrayList<Zdarzenie> zd,
-			ArrayList<Wypozyczenie> wyp, Date from, Date to) {
+			ArrayList<Rent> wyp, Date from, Date to) {
 		ArrayList<Double> values = new ArrayList<Double>();
 		Date tmp;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,10 +95,10 @@ public class ReportGenerator {
 					values.add(z.getWartosc());
 				}
 			}
-			for (Wypozyczenie w : wyp) {
-				tmp = format.parse(w.getData_wyp());
+			for (Rent w : wyp) {
+				tmp = format.parse(w.getStartDate());
 				if (tmp.after(from) && tmp.before(to)) {
-					values.add(w.getWartosc());
+					values.add(w.getValue());
 				}
 			}
 			PrintStream out = new PrintStream(new FileOutputStream(
@@ -150,7 +150,7 @@ public class ReportGenerator {
 	 * @param nr_roweru
 	 *            numer wybranego roweru, dla ktorego chcemy utworzyc raport
 	 */
-	public void generateStats(ArrayList<Wypozyczenie> wyp,
+	public void generateStats(ArrayList<Rent> wyp,
 			ArrayList<Bicycles> rowery, int nr_roweru) {
 		try {
 			PrintStream out = new PrintStream(new FileOutputStream(
@@ -158,11 +158,11 @@ public class ReportGenerator {
 			out.println("\n--==RAPORT FINANSOWY==--\n");
 			out.println("\nDla roweru nr " + nr_roweru + "\n");
 			Double suma = 0.0;
-			for (Wypozyczenie w : wyp) {
-				if (w.getRower() == nr_roweru) {
-					suma = suma + w.getWartosc();
+			for (Rent w : wyp) {
+				if (w.getBicycle() == nr_roweru) {
+					suma = suma + w.getValue();
 					out.println("\nWartosc wypozyczenia ");
-					out.println(w.getWartosc().toString());
+					out.println(w.getValue().toString());
 					out.println("RAZEM:" + suma.toString());
 				}
 				JOptionPane.showMessageDialog(null,
