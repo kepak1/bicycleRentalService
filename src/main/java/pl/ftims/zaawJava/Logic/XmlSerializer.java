@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.Logic;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;

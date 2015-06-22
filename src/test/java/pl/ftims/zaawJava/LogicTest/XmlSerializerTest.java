@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pl.ftims.zaawJava.Entities.Bicycles;
+import pl.ftims.zaawJava.Logic.XmlSerializer;
 
 
 public class XmlSerializerTest {

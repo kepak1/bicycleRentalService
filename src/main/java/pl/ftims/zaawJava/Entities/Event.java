@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * Klasa reprezentujaca zdarzenia w wypozyczalni.
  */
-public class Zdarzenie implements Serializable,Comparable<Zdarzenie>,Comparator<Zdarzenie>{
+public class Event implements Serializable,Comparable<Event>,Comparator<Event>{
 	
 	/**  pole do serializacji. */
 	private static final long serialVersionUID = 123456789L;
@@ -19,16 +19,16 @@ public class Zdarzenie implements Serializable,Comparable<Zdarzenie>,Comparator<
 private Integer ID;
 
 /**  Nazwa zdarzenia. */
-private String tytul;
+private String title;
 
 /**  Data zdarzenia. */
-private String data;
+private String date;
 
 /**  Koszt. */
-private Double wartosc;
+private Double value;
 
 /**  Uwagi. */
-private String opis;
+private String comment;
 
 
 public Integer getID() {
@@ -39,42 +39,42 @@ public void setID(Integer iD) {
 	ID = iD;
 }
 
-public String getTytul() {
-	return tytul;
+public String getTittle() {
+	return title;
 }
 
-public void setTytul(String tytul) {
-	this.tytul = tytul;
+public void setTittle(String tittlel) {
+	this.title = tittlel;
 }
 
-public String getData() {
-	return data;
+public String getDate() {
+	return date;
 }
 
-public void setData(String data) {
-	this.data = data;
+public void setData(String date) {
+	this.date = date;
 }
 
-public Double getWartosc() {
-	return wartosc;
+public Double getValue() {
+	return value;
 }
 
-public void setWartosc(Double wartosc) {
-	this.wartosc = wartosc;
+public void setValue(Double value) {
+	this.value = value;
 }
 
-public String getOpis() {
-	return opis;
+public String getComment() {
+	return comment;
 }
 
 public void setOpis(String opis) {
-	this.opis = opis;
+	this.comment = opis;
 }
 
 /**
  * Konstruktor bezparametrowy potrzebny do serializacji obiektow klasy.
  */
-public Zdarzenie(){
+public Event(){
 	
 }
 
@@ -82,36 +82,36 @@ public Zdarzenie(){
  * Konstruktor nowego zdarzenia.
  *
  * @param iD kolejny numer zdarzenia
- * @param tytul nazwa zdarzenia
- * @param wartosc koszt (dodatni jezeli uzyskano przychod, ujemny jezeli strata)
- * @param opis uwagi na temat zdarzenia
+ * @param tittle nazwa zdarzenia
+ * @param value koszt (dodatni jezeli uzyskano przychod, ujemny jezeli strata)
+ * @param comment uwagi na temat zdarzenia
  */
-public Zdarzenie(Integer iD, String tytul, Double wartosc,
-		String opis) {
+public Event(Integer iD, String tittle, Double value,
+		String comment) {
 	Date data2 = new Date();
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	this.ID = iD;
-	this.tytul = tytul;
-	this.data = format.format(data2);
-	this.wartosc = wartosc;
-	this.opis = opis;
+	this.title = tittle;
+	this.date = format.format(data2);
+	this.value = value;
+	this.comment = comment;
 }
 /**
  * Konstruktor nowego zdarzenia.
  *
  * @param iD kolejny numer zdarzenia
- * @param tytul nazwa zdarzenia
- * @param data data wystapienia zdarzenia
- * @param wartosc koszt (dodatni jezeli uzyskano przychod, ujemny jezeli strata)
- * @param opis uwagi na temat zdarzenia
+ * @param tittle nazwa zdarzenia
+ * @param date data wystapienia zdarzenia
+ * @param value koszt (dodatni jezeli uzyskano przychod, ujemny jezeli strata)
+ * @param comment uwagi na temat zdarzenia
  */
-public Zdarzenie(Integer iD, String tytul, String data, Double wartosc,
-		String opis) {
+public Event(Integer iD, String tittle, String date, Double value,
+		String comment) {
 	this.ID = iD;
-	this.tytul = tytul;
-	this.data = data;
-	this.wartosc = wartosc;
-	this.opis = opis;
+	this.title = tittle;
+	this.date = date;
+	this.value = value;
+	this.comment = comment;
 }
 
 /**
@@ -121,8 +121,8 @@ public Zdarzenie(Integer iD, String tytul, String data, Double wartosc,
  * @param o obiekt do porownania
  * @return int wynik porownania (-1 - mniejszy,0 - rowny,1 - wiekszy)
  */
-public int compareTo(Zdarzenie o) {
-	int compareWartosc = this.wartosc.compareTo(o.wartosc);
+public int compareTo(Event o) {
+	int compareWartosc = this.value.compareTo(o.value);
 	if(compareWartosc==0){
 		return this.ID.compareTo(o.ID);	
 	}
@@ -138,7 +138,7 @@ public int compareTo(Zdarzenie o) {
  * @param o2 drugi obiekt do porownania
  * @return int wynik porownania (-1 - mniejszy,0 - rowny,1 - wiekszy)
  */
-public int compare(Zdarzenie o1, Zdarzenie o2) {
+public int compare(Event o1, Event o2) {
 	return o1.ID-o2.ID;
 }
 

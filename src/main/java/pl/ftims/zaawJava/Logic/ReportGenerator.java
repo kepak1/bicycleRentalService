@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.Logic;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -30,11 +30,11 @@ public class ReportGenerator {
 	 * @param wyp
 	 *            lista wypozyczen
 	 */
-	public void generatePaymentsReport(ArrayList<Zdarzenie> zd,
+	public void generatePaymentsReport(ArrayList<Event> zd,
 			ArrayList<Rent> wyp) {
 		ArrayList<Double> values = new ArrayList<Double>();
-		for (Zdarzenie z : zd) {
-			values.add(z.getWartosc());
+		for (Event z : zd) {
+			values.add(z.getValue());
 		}
 		for (Rent w : wyp) {
 			values.add(w.getValue());
@@ -83,16 +83,16 @@ public class ReportGenerator {
 	 * @param from data poczatkowa
 	 * @param to data koncowa
 	 */
-	public void generatePaymentsReport(ArrayList<Zdarzenie> zd,
+	public void generatePaymentsReport(ArrayList<Event> zd,
 			ArrayList<Rent> wyp, Date from, Date to) {
 		ArrayList<Double> values = new ArrayList<Double>();
 		Date tmp;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			for (Zdarzenie z : zd) {
-				tmp = format.parse(z.getData());
+			for (Event z : zd) {
+				tmp = format.parse(z.getDate());
 				if (tmp.after(from) && tmp.before(to)) {
-					values.add(z.getWartosc());
+					values.add(z.getValue());
 				}
 			}
 			for (Rent w : wyp) {

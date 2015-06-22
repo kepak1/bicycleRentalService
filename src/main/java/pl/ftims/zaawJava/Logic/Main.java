@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.Logic;
 import java.awt.EventQueue;
 
 // TODO: Auto-generated Javadoc
@@ -18,7 +18,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		@SuppressWarnings("unused")
-		WypozyczalniaWrapper wrapper = new WypozyczalniaWrapper();
+		Wrapper wrapper = new Wrapper();
 	}
 
 }

@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.Logic;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class ListWrapper {
 	private ArrayList<Rent> rents;
 	
 	/** lista reprezentujaca zdarzenia */
-	private ArrayList<Zdarzenie> events;
+	private ArrayList<Event> events;
 	
 	public ArrayList<Client> getKlienci() {
 		return clients;
@@ -49,11 +49,11 @@ public class ListWrapper {
 		this.rents = rents;
 	}
 
-	public ArrayList<Zdarzenie> getEvents() {
+	public ArrayList<Event> getEvents() {
 		return events;
 	}
 
-	public void setEvents(ArrayList<Zdarzenie> events) {
+	public void setEvents(ArrayList<Event> events) {
 		this.events = events;
 	}
 
@@ -64,7 +64,7 @@ public class ListWrapper {
 		clients = new ArrayList<Client>();
 		bicycles = new ArrayList<Bicycles>();
 		rents = new ArrayList<Rent>();
-		events = new ArrayList<Zdarzenie>();
+		events = new ArrayList<Event>();
 	}
    
    /**

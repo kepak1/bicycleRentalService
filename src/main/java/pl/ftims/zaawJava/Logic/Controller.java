@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.Logic;
 
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -70,11 +70,11 @@ public class Controller {
 	}
 
 	/** Zwraca liste zdarzen z wrappera */
-	public ArrayList<Zdarzenie> getEvents() {
+	public ArrayList<Event> getEvents() {
 		return lists.getEvents();
 	}
 
-	public void setEvents(ArrayList<Zdarzenie> zdarzenia) {
+	public void setEvents(ArrayList<Event> zdarzenia) {
 		lists.setEvents(zdarzenia);
 	}
 
@@ -402,14 +402,14 @@ public class Controller {
 			public void actionPerformed(ActionEvent arg0) {
 				int selected = mw.comboBox_4.getSelectedIndex();
 				lists.getEvents().get(selected)
-						.setTytul(mw.textField_17.getText());
+						.setTittle(mw.textField_17.getText());
 				lists.getEvents().get(selected)
 						.setData(mw.textField_18.getText());
 				lists.getEvents().get(selected)
 						.setOpis(mw.textField_19.getText());
 				lists.getEvents()
 						.get(selected)
-						.setWartosc(
+						.setValue(
 								Double.parseDouble(mw.textField_20.getText()));
 			}
 		});
@@ -583,12 +583,12 @@ public class Controller {
 
 					}
 					if (filename.equals("Zdarzenia.xml")) {
-						ArrayList<Zdarzenie> temp = new ArrayList<Zdarzenie>();
+						ArrayList<Event> temp = new ArrayList<Event>();
 						try {
-							temp = (ArrayList<Zdarzenie>) serializer
+							temp = (ArrayList<Event>) serializer
 									.deserializeFromXML("Zdarzenia.xml");
 							lists.clearList(lists.getEvents());
-							for (Zdarzenie tmp : temp) {
+							for (Event tmp : temp) {
 								lists.addItem(lists.getEvents(), tmp);
 								;
 							}
@@ -677,7 +677,7 @@ public class Controller {
 			lists.setBicycles(new ArrayList<Bicycles>(db.readBicycles(path)));
 			lists.setRents(new ArrayList<Rent>(db
 					.readRents(path)));
-			lists.setEvents(new ArrayList<Zdarzenie>(db
+			lists.setEvents(new ArrayList<Event>(db
 					.readEvents(path)));
 			initialUpdate();
 			loadComboBoxItems(lists.getKlienci(), mw.comboBox);
@@ -701,7 +701,7 @@ public class Controller {
 			lists.setBicycles(new ArrayList<Bicycles>(db.readBicycles(path)));
 			lists.setRents(new ArrayList<Rent>(db
 					.readRents(path)));
-			lists.setEvents(new ArrayList<Zdarzenie>(db
+			lists.setEvents(new ArrayList<Event>(db
 					.readEvents(path)));
 			initialUpdate();
 			loadComboBoxItems(lists.getKlienci(), mw.comboBox);
@@ -750,11 +750,11 @@ public class Controller {
 		mw.textField_16.setText(lists.getRents().get(0).getPrice()
 				.toString());
 
-		mw.textField_17.setText(lists.getEvents().get(0).getTytul());
-		mw.textField_18.setText(lists.getEvents().get(0).getData());
-		mw.textField_20.setText(lists.getEvents().get(0).getWartosc()
+		mw.textField_17.setText(lists.getEvents().get(0).getTittle());
+		mw.textField_18.setText(lists.getEvents().get(0).getDate());
+		mw.textField_20.setText(lists.getEvents().get(0).getValue()
 				.toString());
-		mw.textField_19.setText(lists.getEvents().get(0).getOpis());
+		mw.textField_19.setText(lists.getEvents().get(0).getComment());
 	}
 
 	/**
@@ -813,7 +813,7 @@ public class Controller {
 	public void addEvent() {
 		ListWrapper.addItem(
 				lists.getEvents(),
-				(new Zdarzenie(null, mw.textField_17.getText(), Double
+				(new Event(null, mw.textField_17.getText(), Double
 						.parseDouble(mw.textField_20.getText()),
 						mw.textField_19.getText())));
 		JOptionPane.showMessageDialog(null, "Dodano na pozycji "
@@ -912,10 +912,10 @@ public class Controller {
 	 *            wybrana pozycja JComboBox
 	 */
 	public void updateEventsView(int selected) {
-		mw.textField_17.setText(lists.getEvents().get(selected).getTytul());
-		mw.textField_18.setText(lists.getEvents().get(selected).getData());
-		mw.textField_20.setText(lists.getEvents().get(selected).getWartosc()
+		mw.textField_17.setText(lists.getEvents().get(selected).getTittle());
+		mw.textField_18.setText(lists.getEvents().get(selected).getDate());
+		mw.textField_20.setText(lists.getEvents().get(selected).getValue()
 				.toString());
-		mw.textField_19.setText(lists.getEvents().get(selected).getOpis());
+		mw.textField_19.setText(lists.getEvents().get(selected).getComment());
 	}
 }

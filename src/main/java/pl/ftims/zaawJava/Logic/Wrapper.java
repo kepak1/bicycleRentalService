@@ -1,7 +1,7 @@
 /*
  * 
  */
-package pl.ftims.zaawJava.LogicTest;
+package pl.ftims.zaawJava.Logic;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ import pl.ftims.zaawJava.View.MainWindow;
 /**
  * WypozyczalniaWrapper zawiera widok, model i kontroler aplikacji, wykorzystywana jako opakowanie dla calej aplikacji
  */
-public class WypozyczalniaWrapper {
+public class Wrapper {
 	
 	/** model */
 	public Database database;
@@ -28,7 +28,7 @@ public class WypozyczalniaWrapper {
 	/**
 	 * Tworzy nowy wrapper dla calej wypozyczalni zawierajacy model, widok i kontroler, widok korzysta z bazy, kontroler korzysta z bazy danych i widoku
 	 */
-	public WypozyczalniaWrapper() {
+	public Wrapper() {
 		database = new Database();
 		mainwindow = new MainWindow();
 		controller = new Controller(database,mainwindow);

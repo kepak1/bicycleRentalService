@@ -190,15 +190,15 @@ public class Database {
 	 * @throws SQLException
 	 *             wyjatek SQL
 	 */
-	public ArrayList<Zdarzenie> readEvents(String dbfile)
+	public ArrayList<Event> readEvents(String dbfile)
 			throws SQLException {
 		initDatabase(dbfile);
 		try {
 
 			wydarzenia.first();
-			ArrayList<Zdarzenie> bufor = new ArrayList<Zdarzenie>();
+			ArrayList<Event> bufor = new ArrayList<Event>();
 			do {
-				bufor.add(new Zdarzenie(wydarzenia.getInt("ID_Zdarzenia"),
+				bufor.add(new Event(wydarzenia.getInt("ID_Zdarzenia"),
 						wydarzenia.getString("Tytul"), wydarzenia
 								.getString("Data"), wydarzenia
 								.getDouble("Wartosc"), wydarzenia
@@ -224,7 +224,7 @@ public class Database {
 	 * @param dbfile
 	 *            nazwa pliku z baza danych
 	 */
-	public void saveEvents(ArrayList<Zdarzenie> EventsChanged,
+	public void saveEvents(ArrayList<Event> EventsChanged,
 			String dbfile) {
 
 		try {
@@ -235,22 +235,22 @@ public class Database {
 			for (int i = 0; i < EventsChanged.size(); i++) {
 				if (EventsChanged.get(i).getID() != null) {
 					wyda.executeUpdate("UPDATE Zdarzenia SET Tytul='"
-							+ EventsChanged.get(i).getTytul() 
-							+"', Data='"+ EventsChanged.get(i).getData() 
-							+ "', Wartosc=" + EventsChanged.get(i).getWartosc() 
-							+ ", Opis='" + EventsChanged.get(i).getOpis()
+							+ EventsChanged.get(i).getTittle() 
+							+"', Data='"+ EventsChanged.get(i).getDate() 
+							+ "', Wartosc=" + EventsChanged.get(i).getValue() 
+							+ ", Opis='" + EventsChanged.get(i).getComment()
 							+ "' WHERE ID_Zdarzenia="
 							+ EventsChanged.get(i).getID() + "");
 					
 				} else {
 					wyda.executeUpdate("INSERT INTO Zdarzenia (Tytul,Data,Wartosc,Opis) VALUES ('"
-							+ EventsChanged.get(i).getTytul()
+							+ EventsChanged.get(i).getTittle()
 							+ "','"
-							+ EventsChanged.get(i).getData()
+							+ EventsChanged.get(i).getDate()
 							+ "','"
-							+ EventsChanged.get(i).getWartosc()
+							+ EventsChanged.get(i).getValue()
 							+ "','"
-							+ EventsChanged.get(i).getOpis() + "')");
+							+ EventsChanged.get(i).getComment() + "')");
 				}
 			}
 			JOptionPane.showMessageDialog(null,
@@ -460,7 +460,7 @@ public class Database {
 	 * @param db
 	 *            nazwa pliku z baza danych
 	 */
-	public void deleteEvents(Zdarzenie event, String db){
+	public void deleteEvents(Event event, String db){
 		try {
 			initDatabase(db);
 			Statement row = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
